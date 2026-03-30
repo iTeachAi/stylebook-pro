@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Clock, DollarSign } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,32 +18,30 @@ export default function ServiceCard({ id, name, description, price, duration_min
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4 }}
-      className="group rounded-xl border border-border bg-card p-6 hover:border-primary/40 hover:shadow-gold transition-all duration-300"
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="group border-b border-border py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-accent/30 transition-colors px-4 -mx-4"
     >
-      <div className="flex items-start justify-between mb-3">
-        <div>
-          <h3 className="font-display text-lg font-semibold text-card-foreground">{name}</h3>
-          <div className="flex gap-2 mt-1">
-            <span className="text-xs uppercase tracking-wider text-primary font-medium">{category_gender}</span>
-            {category_length && (
-              <span className="text-xs uppercase tracking-wider text-muted-foreground">• {category_length}</span>
-            )}
-          </div>
+      <div className="flex-1">
+        <div className="flex items-baseline gap-3">
+          <h3 className="font-display text-2xl text-foreground">{name}</h3>
+          <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{category_gender}</span>
+          {category_length && (
+            <span className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">· {category_length}</span>
+          )}
         </div>
-        <span className="text-2xl font-display font-bold text-primary">${price}</span>
+        {description && <p className="text-sm text-muted-foreground mt-1 max-w-md">{description}</p>}
       </div>
-      {description && <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{description}</p>}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1 text-muted-foreground">
-          <Clock className="h-4 w-4" />
-          <span className="text-sm">{duration_minutes} min</span>
+      <div className="flex items-center gap-6 shrink-0">
+        <div className="flex items-center gap-1.5 text-muted-foreground">
+          <Clock className="h-3.5 w-3.5" />
+          <span className="text-sm">{duration_minutes}′</span>
         </div>
-        <Button variant="gold" size="sm" onClick={() => navigate(`/book?service=${id}`)}>
-          Book Now
+        <span className="font-display text-2xl text-foreground">${price}</span>
+        <Button variant="outline" size="sm" onClick={() => navigate(`/book?service=${id}`)}>
+          Book
         </Button>
       </div>
     </motion.div>

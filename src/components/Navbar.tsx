@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
-import { Scissors, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -16,30 +16,27 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <Scissors className="h-6 w-6 text-primary" />
-          <span className="font-display text-xl font-semibold text-foreground">Luxe Studio</span>
+        <Link to="/" className="font-display text-xl text-foreground tracking-tight">
+          Luxe <span className="serif-italic">Studio</span>
         </Link>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-6">
-          <Link to="/services" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Services</Link>
-          <Link to="/book" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Book Now</Link>
+        <div className="hidden md:flex items-center gap-8">
+          <Link to="/services" className="text-[13px] uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors">Services</Link>
+          <Link to="/book" className="text-[13px] uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors">Book</Link>
           {isAdmin && (
-            <Link to="/admin" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Dashboard</Link>
+            <Link to="/admin" className="text-[13px] uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors">Dashboard</Link>
           )}
           {user ? (
-            <Button variant="gold-outline" size="sm" onClick={handleSignOut}>Sign Out</Button>
+            <Button variant="minimal" size="sm" onClick={handleSignOut}>Sign Out</Button>
           ) : (
-            <Button variant="gold" size="sm" onClick={() => navigate('/auth')}>Sign In</Button>
+            <Button variant="outline" size="sm" onClick={() => navigate('/auth')}>Sign In</Button>
           )}
         </div>
 
-        {/* Mobile toggle */}
         <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
@@ -51,14 +48,14 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden border-t border-border bg-background"
           >
-            <div className="container py-4 flex flex-col gap-3">
-              <Link to="/services" onClick={() => setMobileOpen(false)} className="text-sm text-muted-foreground hover:text-foreground py-2">Services</Link>
-              <Link to="/book" onClick={() => setMobileOpen(false)} className="text-sm text-muted-foreground hover:text-foreground py-2">Book Now</Link>
-              {isAdmin && <Link to="/admin" onClick={() => setMobileOpen(false)} className="text-sm text-muted-foreground hover:text-foreground py-2">Dashboard</Link>}
+            <div className="container py-6 flex flex-col gap-4">
+              <Link to="/services" onClick={() => setMobileOpen(false)} className="text-[13px] uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground py-1">Services</Link>
+              <Link to="/book" onClick={() => setMobileOpen(false)} className="text-[13px] uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground py-1">Book</Link>
+              {isAdmin && <Link to="/admin" onClick={() => setMobileOpen(false)} className="text-[13px] uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground py-1">Dashboard</Link>}
               {user ? (
-                <Button variant="gold-outline" size="sm" onClick={() => { handleSignOut(); setMobileOpen(false); }}>Sign Out</Button>
+                <Button variant="outline" size="sm" onClick={() => { handleSignOut(); setMobileOpen(false); }}>Sign Out</Button>
               ) : (
-                <Button variant="gold" size="sm" onClick={() => { navigate('/auth'); setMobileOpen(false); }}>Sign In</Button>
+                <Button variant="default" size="sm" onClick={() => { navigate('/auth'); setMobileOpen(false); }}>Sign In</Button>
               )}
             </div>
           </motion.div>
