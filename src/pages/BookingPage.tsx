@@ -405,7 +405,7 @@ export default function BookingPage() {
                     <div className="flex justify-between font-semibold pt-2 border-t border-border"><span className="text-foreground">Total</span><span className="text-primary">${totalPrice}</span></div>
                   </div>
                 </div>
-                <Button variant="gold" className="mt-8" onClick={() => navigate('/')}>Back to Home</Button>
+                <Button variant="default" className="mt-8" onClick={() => navigate('/')}>Back to Home</Button>
               </div>
             )}
           </motion.div>
@@ -417,7 +417,7 @@ export default function BookingPage() {
             <Button variant="ghost" onClick={goBack} disabled={stepIndex === 0}>
               <ArrowLeft className="h-4 w-4 mr-2" /> Back
             </Button>
-            <Button variant="gold" onClick={goNext} disabled={!canProceed() || submitting}>
+            <Button variant="default" onClick={goNext} disabled={!canProceed() || submitting}>
               {currentStep === 'details' ? (submitting ? 'Booking...' : 'Confirm Booking') : 'Next'}
               {currentStep !== 'details' && <ChevronRight className="h-4 w-4 ml-2" />}
             </Button>

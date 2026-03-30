@@ -34,38 +34,45 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="container pt-24 pb-16">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-2">Our Services</h1>
-          <p className="text-muted-foreground">Find the perfect treatment for your style</p>
+      <div className="container pt-28 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-12"
+        >
+          <p className="text-[13px] uppercase tracking-[0.3em] text-muted-foreground mb-4">What We Offer</p>
+          <h1 className="font-display text-5xl md:text-6xl text-foreground">
+            Our <span className="serif-italic">Services</span>
+          </h1>
         </motion.div>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-3 mb-8">
-          <div className="flex gap-2">
+        <div className="flex flex-wrap gap-6 mb-10 border-b border-border pb-6">
+          <div className="flex gap-1">
             {genderFilters.map(g => (
               <button
                 key={g}
                 onClick={() => setGender(g)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors capitalize ${
+                className={`px-4 py-1.5 text-[13px] uppercase tracking-[0.1em] transition-colors capitalize ${
                   gender === g
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-secondary text-secondary-foreground hover:bg-surface-hover'
+                    ? 'text-foreground bg-accent'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 {g}
               </button>
             ))}
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-1">
             {lengthFilters.map(l => (
               <button
                 key={l}
                 onClick={() => setLength(l)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors capitalize ${
+                className={`px-4 py-1.5 text-[13px] uppercase tracking-[0.1em] transition-colors capitalize ${
                   length === l
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-secondary text-secondary-foreground hover:bg-surface-hover'
+                    ? 'text-foreground bg-accent'
+                    : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 {l}
@@ -75,20 +82,21 @@ export default function Services() {
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-6">
             {[1, 2, 3].map(i => (
-              <div key={i} className="h-48 rounded-xl bg-card animate-pulse" />
+              <div key={i} className="h-20 bg-accent/30 animate-pulse" />
             ))}
           </div>
         ) : filtered && filtered.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div>
             {filtered.map(s => (
               <ServiceCard key={s.id} {...s} />
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 text-muted-foreground">
-            <p>No services found. Try adjusting your filters.</p>
+          <div className="text-center py-24 text-muted-foreground">
+            <p className="font-display text-2xl text-foreground mb-2">No services found</p>
+            <p>Try adjusting your filters</p>
           </div>
         )}
       </div>
