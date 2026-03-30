@@ -202,7 +202,7 @@ function ServicesTab({ showForm, setShowForm, formState }: any) {
     <div>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-display font-semibold text-foreground">Services</h2>
-        <Button variant="gold" size="sm" onClick={() => setShowForm(!showForm)}>
+        <Button variant="default" size="sm" onClick={() => setShowForm(!showForm)}>
           <Plus className="h-4 w-4 mr-1" /> Add Service
         </Button>
       </div>
@@ -225,7 +225,7 @@ function ServicesTab({ showForm, setShowForm, formState }: any) {
             </select>
           </div>
           <Textarea placeholder="Description" className="mt-3" value={formState.sDesc} onChange={e => formState.setSDesc(e.target.value)} />
-          <Button variant="gold" size="sm" className="mt-3" onClick={() => addService.mutate()} disabled={!formState.sName || !formState.sPrice}>
+          <Button variant="default" size="sm" className="mt-3" onClick={() => addService.mutate()} disabled={!formState.sName || !formState.sPrice}>
             Save Service
           </Button>
         </motion.div>
@@ -288,7 +288,7 @@ function AddonsTab({ showForm, setShowForm, formState }: any) {
     <div>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-display font-semibold text-foreground">Add-ons</h2>
-        <Button variant="gold" size="sm" onClick={() => setShowForm(!showForm)}>
+        <Button variant="default" size="sm" onClick={() => setShowForm(!showForm)}>
           <Plus className="h-4 w-4 mr-1" /> Add Add-on
         </Button>
       </div>
@@ -297,7 +297,7 @@ function AddonsTab({ showForm, setShowForm, formState }: any) {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-xl border border-border bg-card p-4 mb-4 flex gap-3">
           <Input placeholder="Name" value={formState.aName} onChange={e => formState.setAName(e.target.value)} />
           <Input placeholder="Price" type="number" value={formState.aPrice} onChange={e => formState.setAPrice(e.target.value)} className="w-32" />
-          <Button variant="gold" size="sm" onClick={() => addAddon.mutate()} disabled={!formState.aName || !formState.aPrice}>Save</Button>
+          <Button variant="default" size="sm" onClick={() => addAddon.mutate()} disabled={!formState.aName || !formState.aPrice}>Save</Button>
         </motion.div>
       )}
 
@@ -418,7 +418,7 @@ function ScheduleTab({ blockDate, setBlockDate, blockReason, setBlockReason }: a
         <div className="flex gap-3 mb-4">
           <Input type="date" value={blockDate} onChange={e => setBlockDate(e.target.value)} className="w-48" />
           <Input placeholder="Reason (optional)" value={blockReason} onChange={e => setBlockReason(e.target.value)} />
-          <Button variant="gold" size="sm" onClick={() => addBlocked.mutate()} disabled={!blockDate}>Block</Button>
+          <Button variant="default" size="sm" onClick={() => addBlocked.mutate()} disabled={!blockDate}>Block</Button>
         </div>
         <div className="space-y-2">
           {blockedDates?.map(b => (
