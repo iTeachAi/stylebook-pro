@@ -347,8 +347,8 @@ function ScheduleTab({ blockDate, setBlockDate, blockReason, setBlockReason }: a
   });
 
   const updateSchedule = useMutation({
-    mutationFn: async ({ id, field, value }: { id: string; field: string; value: string }) => {
-      const { error } = await supabase.from('schedule_settings').update({ [field]: value }).eq('id', id);
+    mutationFn: async ({ id, field, value }: { id: string; field: 'start_time' | 'end_time'; value: string }) => {
+      const { error } = await supabase.from('schedule_settings').update({ [field]: value } as { start_time?: string; end_time?: string }).eq('id', id);
       if (error) throw error;
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['admin-schedule'] }),
